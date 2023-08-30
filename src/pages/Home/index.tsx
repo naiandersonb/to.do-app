@@ -8,8 +8,6 @@ import { Task } from "../../interfaces/task";
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  console.log('teste')
-
   const handleAddTask = useCallback((newTaskTitle: string) => {
     if (!newTaskTitle) return
 
