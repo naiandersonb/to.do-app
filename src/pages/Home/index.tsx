@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, View } from "react-native";
 import { AddTaskInput } from "../../components/AddTaskInput";
 import { Header } from "../../components/Header";
 import { TaskCard } from "../../components/TaskCard";
 import { Task } from "../../interfaces/task";
+import { styles } from "./styles";
 
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -39,6 +40,21 @@ export function Home() {
     setTasks(oldTasks => oldTasks.filter(task => task.id !== id))
   }, [tasks])
 
+  const handleEditTitle = useCallback((id: string, newTitle: string) => {
+    const newTasks = tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          title: newTitle
+        }
+      }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }, [tasks])
+
 
   return (
     <View style={styles.container}>
@@ -52,6 +68,7 @@ export function Home() {
           <TaskCard
             removeTask={handleRemoveTask}
             toggleTaskDone={handleToggleTaskDone}
+            editTitle={handleEditTitle}
             task={task}
             index={index}
           />
@@ -62,16 +79,4 @@ export function Home() {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EBEBEB',
-  },
 
-  card: {
-    paddingHorizontal: 24,
-    paddingVertical: 24,
-    backgroundColor: '#fff',
-    marginBottom: 16
-  }
-})

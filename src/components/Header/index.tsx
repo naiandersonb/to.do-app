@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native"
+import { Text, View } from "react-native"
+import { styles } from "./styles"
 
 interface HeaderProps {
   tasksCounter: number
@@ -16,26 +17,3 @@ export function Header({ tasksCounter }: HeaderProps) {
     </View>
   )
 }
-const styles = StyleSheet.create({
-  headerContainer: {
-    height: 200,
-    paddingHorizontal: 24,
-    backgroundColor: '#8257E5',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-
-  logo: {
-    fontFamily: 'Roboto',
-    fontSize: 48,
-    color: '#fff',
-    fontWeight: 'bold'
-  },
-
-  tasksCounter: {
-
-    fontWeight: 'bold',
-    fontSize: 16
-  }
-})

@@ -1,6 +1,7 @@
 import { CaretRight } from "phosphor-react-native";
 import { useCallback, useState } from "react";
-import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import { TextInput, TouchableOpacity, View } from "react-native";
+import { styles } from "./styles";
 
 interface AddTaskInputProps {
   addTask: (newTaskTitle: string) => void
@@ -20,7 +21,7 @@ export function AddTaskInput({ addTask }: AddTaskInputProps) {
         <TextInput
           value={newTask}
           onChangeText={setNewTask}
-          style={{ color: '#666666' }}
+          style={styles.input}
           placeholderTextColor='#B2B2B2'
           placeholder="Adicione uma tarefa"
         />
@@ -36,24 +37,3 @@ export function AddTaskInput({ addTask }: AddTaskInputProps) {
   )
 }
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    height: 56,
-    borderRadius: 5,
-    paddingLeft: 16,
-    marginTop: -(56 / 2)
-  },
-
-  button: {
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 15,
-    borderLeftColor: '#EBEBEB',
-    borderLeftWidth: 1,
-  }
-})
